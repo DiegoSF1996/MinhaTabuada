@@ -2,20 +2,8 @@ import * as React from 'react';
 import {Button, View, Text, StyleSheet, Pressable} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-
-let oInicio = require('./controller/InicioController');
-
-function Inicio({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Pressable
-        style={styles.buttonPlay}
-        onPress={() => navigation.navigate('Teste')}>
-        <Text style={styles.text}>PLAY</Text>
-      </Pressable>
-    </View>
-  );
-}
+import Inicio from './view/Inicio';
+import Jogar from './view/Jogar';
 
 function Teste({navigation}) {
   return (
@@ -55,6 +43,8 @@ function App() {
           component={Inicio}
         />
         <Drawer.Screen name="Teste" component={Teste} />
+        <Drawer.Screen name="Jogar" component={Jogar} />
+        
       </Drawer.Navigator>
     </NavigationContainer>
   );
