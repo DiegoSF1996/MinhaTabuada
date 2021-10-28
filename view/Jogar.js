@@ -5,7 +5,7 @@ let oJogar = require('../controller/JogarController.js');
 
 let valor = '';
 function teste() {
-  valor = oJogar.tabuadaAleatoria();
+  valor = oJogar.tabuadaAleatoria()['calc'];
 }
 teste();
 const Jogar = function Jogar({navigation}) {
@@ -16,7 +16,7 @@ const Jogar = function Jogar({navigation}) {
           <Text>Tempo: 10:00</Text>
         </View>
         <View onPress={teste()} style={styles.middle}>
-          <Text onPress={teste()}>{valor}</Text>
+          <Text onPress={teste()} style={{fontSize:100,flex: 1, alignItems: 'center', justifyContent: 'center'}}>{valor}=?</Text>
         </View>
         <View style={styles.bottom}>
           <View style={styles.row}>
@@ -28,7 +28,7 @@ const Jogar = function Jogar({navigation}) {
                 },
                 styles.buttonPlay,
               ]}
-              onPress={() => navigation.navigate('Teste')}>
+              onPress={() => teste()}>
               <Text style={styles.text}>PLAY</Text>
             </Pressable>
             <Pressable
