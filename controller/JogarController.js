@@ -2,7 +2,7 @@
 class JogarController {
   constructor() {
     this.tabuada = [];
-    this.respostasAleatorias=[];
+    this.respostasAleatorias = [];
   }
   gerarTabuada() {
     for (let x = 2; x <= 10; x++) {
@@ -21,17 +21,31 @@ class JogarController {
     let x = parseInt(Math.random() * (10 - 2) + 2);
     let y = parseInt(Math.random() * (10 - 2) + 2);
     let tipoInt = parseInt(Math.random() * (3 - 0) + 0);
-    console.log(x+'-'+' '+y);
+    if (tipoInt == 2) {
+      if (x < y) {
+        let xAux = x;
+        x = y;
+        y = xAux;
+      }
+    }
     let operacoes = 'x,+,-,/';
     operacoes = operacoes.split(',');
     this.contaAtual = this.tabuada[x][y][operacoes[tipoInt]];
     //this.contaAtual = {'calc': this.tabuada[x][y][tipo.toString()]['calc'], 'res': this.tabuada[x][y]['x']['res']}
+    this.gerarRespostasAleatoria();
     return this.tabuada[x][y][operacoes[tipoInt]];
   }
 
-  gerarRespostasAleatoria(){
+  gerarRespostasAleatoria() {
     let resposta = this.contaAtual['res'];
-    //this.respostasAleatorias=[ resposta+2,respost-1, resposta, resposta+1,]
+    this.respostasAleatorias = [
+      resposta + 2,
+      resposta + 4,
+      resposta + 3,
+      resposta + 1,
+    ];
+    this.respostasAleatorias[parseInt(Math.random() * (3 - 0) + 0)] = resposta;
+    this.respostasAleatorias[4] = resposta; //resposta correta para comparar
   }
   /* async listarthis.tabuada() {
     return await oCliente.obter({});

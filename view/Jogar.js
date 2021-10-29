@@ -1,59 +1,80 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 
 let oJogar = require('../controller/JogarController.js');
 
-let valor = '';
-function teste() {
-  valor = oJogar.tabuadaAleatoria()['calc'];
-}
-teste();
-const Jogar = function Jogar({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <View style={styles.container}>
-        <View style={styles.top}>
-          <Text>Tempo: 10:00</Text>
-        </View>
-        <View onPress={teste()} style={styles.middle}>
-          <Text onPress={teste()} style={{fontSize:100,flex: 1, alignItems: 'center', justifyContent: 'center'}}>{valor}=?</Text>
-        </View>
-        <View style={styles.bottom}>
-          <View style={styles.row}>
-            <Pressable
-              activeOpacity={0.6}
-              style={({pressed}) => [
-                {
-                  backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
-                },
-                styles.buttonPlay,
-              ]}
-              onPress={() => teste()}>
-              <Text style={styles.text}>PLAY</Text>
-            </Pressable>
-            <Pressable
-              style={styles.buttonPlay}
-              onPress={() => navigation.navigate('Teste')}>
-              <Text style={styles.text}>PLAY</Text>
-            </Pressable>
+export default class Jogar extends Component {
+  constructor({navigation}) {
+    super();
+    this.navigation = navigation;
+    this.state = {
+      conta: oJogar.tabuadaAleatoria()['calc'],
+    };
+  }
+  validaResposta(res) {
+    if(res == oJogar.respostasAleatorias[4]){
+      console.log('Acertou Mizeravi');
+    }
+  };  
+  updateText = () => {
+    this.setState({
+      conta: oJogar.tabuadaAleatoria()['calc'],
+    });
+    console.log(this.state.conta);
+  };
+  render() {
+    return (
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={styles.container}>
+          <View style={styles.top}>
+            <Text onPress={this.updateText}>{this.state.conta}</Text>
+            <Text>Tempo: 10:00</Text>
           </View>
-          <View style={styles.row}>
-            <Pressable
-              style={styles.buttonPlay}
-              onPress={() => navigation.navigate('Teste')}>
-              <Text style={styles.text}>PLAY</Text>
-            </Pressable>
-            <Pressable
-              style={styles.buttonPlay}
-              onPress={() => navigation.navigate('Teste')}>
-              <Text style={styles.text}>PLAY</Text>
-            </Pressable>
+          <View onPress={this.updateText} style={styles.middle}>
+            <Text
+              onPress={this.updateText}
+              style={{
+                fontSize: 100,
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              {this.state.conta}=?
+            </Text>
+          </View>
+          <View style={styles.bottom}>
+            <View style={styles.row}>
+              <Pressable
+                activeOpacity={0.6}
+                style={styles.buttonPlay}
+                onPress={this.validaResposta(oJogar.respostasAleatorias[0])}>
+                <Text style={styles.text}>{oJogar.respostasAleatorias[0]}</Text>
+              </Pressable>
+              <Pressable
+                style={styles.buttonPlay}
+                onPress={this.validaResposta(oJogar.respostasAleatorias[1])}>
+                <Text style={styles.text}>{oJogar.respostasAleatorias[1]}</Text>
+              </Pressable>
+            </View>
+            <View style={styles.row}>
+              <Pressable
+                style={styles.buttonPlay}
+                onPress={this.validaResposta(oJogar.respostasAleatorias[2])}>
+                <Text style={styles.text}>{oJogar.respostasAleatorias[2]}</Text>
+              </Pressable>
+              <Pressable
+                style={styles.buttonPlay}
+                onPress={this.validaResposta(oJogar.respostasAleatorias[3])}>
+                <Text style={styles.text}>{oJogar.respostasAleatorias[3]}</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   box: {
     width: 50,
@@ -115,5 +136,3 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
-
-export default Jogar;
