@@ -1,0 +1,25 @@
+Contador de tempo
+Contador de quantos acertou e errou, e quais os indices
+
+Ao clicar em jogar: 
+	Vai pro menu de niveis
+	Sistema de nivel
+	Nevel 1:
+	todas as tabuadas até 10
+	Nivel 2:
+	Até 20
+	Nivel 3:
+	Até 30
+	
+	Ao jogar:
+		- Botar questões novas e repetidas que a pessoa foi mal
+		- Quando o usuario acertar todas as questões em um bom tempo 
+		  *E* a quantidade de acertos forem superiores as de percas
+		  Pode avançar um nivel.
+	Ao entrar em um novo nivel:
+		- Deve ser possivel jogar novamente o nivel anterior
+	Deve existir uma tela para mostrar o desenpenho do usuario
+		- Tela pra mostrar as contas que mais erra
+		- Gráficos de evolução
+		- Gráfico com dias, tempo que jogou
+		

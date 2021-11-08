@@ -4,6 +4,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import Inicio from './view/Inicio';
 import Jogar from './view/Jogar';
+import Niveis from './view/Niveis';
+import * as idioma from './view/assets/language/pt-br.json';
 
 function Teste({navigation}) {
   return (
@@ -18,6 +20,7 @@ function Teste({navigation}) {
 }
 
 const Drawer = createDrawerNavigator();
+
 function App() {
   return (
     <NavigationContainer>
@@ -44,7 +47,7 @@ function App() {
         />
         <Drawer.Screen name="Teste" component={Teste} />
         <Drawer.Screen name="Jogar" component={Jogar} />
-        
+        <Drawer.Screen name="Niveis" component={Niveis} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

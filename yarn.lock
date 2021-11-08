@@ -5488,6 +5488,18 @@
     "mockdate" "^3.0.2"
     "string-hash-64" "^1.0.3"
 
+"react-native-responsive-grid-styles@^1.0.2":
+  "integrity" "sha512-dZIs0OKnr3Yz+dcv8KW1extHo94t7viMuUxCKyjq+tz3x5S2laeeyOIor8uTPOOJ6fGuiMiCtettber2UOnyOg=="
+  "resolved" "https://registry.npmjs.org/react-native-responsive-grid-styles/-/react-native-responsive-grid-styles-1.0.2.tgz"
+  "version" "1.0.2"
+
+"react-native-responsive-grid-system@^1.0.4":
+  "integrity" "sha512-GMCvZTyJwSuKcFF5nMg/pcIPeHnjl8tSda61mtXn2o3WSZ2t+nS7TSOL5XuxnGYDXTJ50CcZteardGDb3XgOSw=="
+  "resolved" "https://registry.npmjs.org/react-native-responsive-grid-system/-/react-native-responsive-grid-system-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "react-native-responsive-grid-styles" "^1.0.2"
+
 "react-native-safe-area-context@^3.3.2", "react-native-safe-area-context@>= 3.0.0":
   "integrity" "sha512-yOwiiPJ1rk+/nfK13eafbpW6sKW0jOnsRem2C1LPJjM3tfTof6hlvV5eWHATye3XOpu2cJ7N+HdkUvUDGwFD2Q=="
   "resolved" "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-3.3.2.tgz"
@@ -5500,7 +5512,12 @@
   dependencies:
     "warn-once" "^0.1.0"
 
-"react-native@*", "react-native@0.66.1":
+"react-native-sqlite-storage@^6.0.1":
+  "integrity" "sha512-1tDFjrint6X6qSYKf3gDyz+XB+X79jfiL6xTugKHPRtF0WvqMtVgdLuNqZunIXjNEvNtNVEbXaeZ6MsguFu00A=="
+  "resolved" "https://registry.npmjs.org/react-native-sqlite-storage/-/react-native-sqlite-storage-6.0.1.tgz"
+  "version" "6.0.1"
+
+"react-native@*", "react-native@>=0.14.0", "react-native@0.66.1":
   "integrity" "sha512-BBvytmqlOLL+bRcO0jBiYfg16lYRsYDOC8/5E+bpnhb3EGtU+YCQAYfszw6JL7Hfy0ftnQNP5yj8pt+vqMHXIA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.66.1.tgz"
   "version" "0.66.1"

@@ -4,10 +4,10 @@ class JogarController {
     this.tabuada = [];
     this.respostasAleatorias = [];
   }
-  gerarTabuada() {
-    for (let x = 2; x <= 10; x++) {
+  gerarTabuadaCompleta() {
+    for (let x = 2; x <= 60; x++) {
       this.tabuada[x] = [];
-      for (let i = 2; i <= 10; i++) {
+      for (let i = 2; i <= 60; i++) {
         this.tabuada[x][i] = [];
         this.tabuada[x][i]['x'] = {calc: x + '*' + i, res: x * i};
         this.tabuada[x][i]['+'] = {calc: x + '+' + i, res: x + i};
@@ -16,16 +16,51 @@ class JogarController {
       }
     }
   }
-  tabuadaAleatoria() {
-    this.gerarTabuada();
-    let x = parseInt(Math.random() * (10 - 2) + 2);
-    let y = parseInt(Math.random() * (10 - 2) + 2);
+  nivelTabuadaAleatoria(nivel) {
+    let tabuada = false;
+    switch (nivel) {
+      case 1:
+        tabuada = this.tabuadaAleatoria(2, 10);
+        break;
+      case 2:
+        tabuada = this.tabuadaAleatoria(10, 20);
+        break;
+      case 3:
+        tabuada = this.tabuadaAleatoria(20, 30);
+        break;
+      case 4:
+        tabuada = this.tabuadaAleatoria(30, 40);
+        break;
+      case 5:
+        tabuada = this.tabuadaAleatoria(40, 50);
+        break;
+    }
+    console.log(nivel);
+    return tabuada;
+  }
+  tabuadaAleatoria(min, max) {
+    this.gerarTabuadaCompleta();
+    let x = parseInt(Math.random() * (max - min) + min);
+    let y = parseInt(Math.random() * (max - min) + min);
     let tipoInt = parseInt(Math.random() * (3 - 0) + 0);
+
     if (tipoInt == 2) {
       if (x < y) {
         let xAux = x;
         x = y;
         y = xAux;
+      }
+    }
+    if (tipoInt == 3) {
+      if (x < y) {
+        let xAux = x;
+        x = y;
+        y = xAux;
+      }
+      if (x / y == parseInt(x / y)) {
+        console.log('ok');
+      } else {
+        return false;
       }
     }
     let operacoes = 'x,+,-,/';
@@ -47,6 +82,9 @@ class JogarController {
     this.respostasAleatorias[parseInt(Math.random() * (3 - 0) + 0)] = resposta;
     this.respostasAleatorias[4] = resposta; //resposta correta para comparar
   }
+
+  cronometro() {}
+
   /* async listarthis.tabuada() {
     return await oCliente.obter({});
   } */
