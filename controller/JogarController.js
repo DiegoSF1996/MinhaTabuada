@@ -73,12 +73,19 @@ class JogarController {
 
   gerarRespostasAleatoria() {
     let resposta = this.contaAtual['res'];
+
     this.respostasAleatorias = [
       resposta + 2,
       resposta + 4,
       resposta + 3,
       resposta + 1,
     ];
+    if (resposta > 3) {
+      this.respostasAleatorias[parseInt(Math.random() * (3 - 0) + 0)] =
+        resposta - 1;
+      this.respostasAleatorias[parseInt(Math.random() * (3 - 0) + 0)] =
+        resposta - 2;
+    }
     this.respostasAleatorias[parseInt(Math.random() * (3 - 0) + 0)] = resposta;
     this.respostasAleatorias[4] = resposta; //resposta correta para comparar
   }
