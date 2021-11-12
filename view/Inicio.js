@@ -1,10 +1,8 @@
 import * as React from 'react';
 import {Button, View, Text, StyleSheet, Pressable} from 'react-native';
 import * as idioma from '../view/assets/language/pt-br.json';
-import migration from '../model/migrations/create_table_nivel'
 let oInicio = require('./controller/InicioController');
 
-migration.up();
 function Inicio({navigation}) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

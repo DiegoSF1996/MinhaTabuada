@@ -9,10 +9,10 @@ class JogarController {
       this.tabuada[x] = [];
       for (let i = 2; i <= 60; i++) {
         this.tabuada[x][i] = [];
-        this.tabuada[x][i]['x'] = {calc: x + '*' + i, res: x * i};
-        this.tabuada[x][i]['+'] = {calc: x + '+' + i, res: x + i};
-        this.tabuada[x][i]['-'] = {calc: x + '-' + i, res: x - i};
-        this.tabuada[x][i]['/'] = {calc: x + '/' + i, res: x / i};
+        this.tabuada[x][i]['x'] = {calc: x + ' × ' + i, res: x * i};
+        this.tabuada[x][i]['+'] = {calc: x + ' + ' + i, res: x + i};
+        this.tabuada[x][i]['-'] = {calc: x + ' - ' + i, res: x - i};
+        this.tabuada[x][i]['/'] = {calc: x + ' ÷ ' + i, res: x / i};
       }
     }
   }
@@ -42,7 +42,7 @@ class JogarController {
     this.gerarTabuadaCompleta();
     let x = parseInt(Math.random() * (max - min) + min);
     let y = parseInt(Math.random() * (max - min) + min);
-    let tipoInt = parseInt(Math.random() * (3 - 0) + 0);
+    let tipoInt = parseInt(Math.random() * (4 - 0) + 0);
 
     if (tipoInt == 2) {
       if (x < y) {

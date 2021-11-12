@@ -6,8 +6,17 @@ import Inicio from './view/Inicio';
 import Jogar from './view/Jogar';
 import Niveis from './view/Niveis';
 import * as idioma from './view/assets/language/pt-br.json';
-
+import realm , { getAllBooks } from './model/Database';
+for (let i = 0; i < 3; i++) {
+  realm.write(() => {
+    const book = realm.create('Book', {
+      title: 'Barry Butter' + i,
+      pages: 400,
+    });
+  });
+}
 function Teste({navigation}) {
+  
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button
@@ -15,6 +24,7 @@ function Teste({navigation}) {
         onPress={() => navigation.goBack()}
         title="Go back home"
       />
+      <Text>{JSON.stringify(getAllBooks())}</Text>
     </View>
   );
 }
@@ -47,7 +57,13 @@ function App() {
         />
         <Drawer.Screen name="Teste" component={Teste} />
         <Drawer.Screen name="Jogar" component={Jogar} />
-        <Drawer.Screen name="Niveis" component={Niveis} />
+        <Drawer.Screen
+          options={{
+            title: 'Níveis',
+          }}
+          name="Niveis"
+          component={Niveis}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 let oJogar = require('../controller/JogarController.js');
 
@@ -48,12 +48,12 @@ export default class Jogar extends Component {
       });
       console.log('Acertou Mizeravi');
       alert('Acertou Mizeravi!');
-
       this.updateText();
     } else {
       this.setState({
         erros: this.state.erros + 1,
       });
+      styles.textOpcoes = {color: 'red'};
       console.log('Errow Mizeravi :(');
       alert('Errow Mizeravi :(!');
       this.updateText();
@@ -98,45 +98,45 @@ export default class Jogar extends Component {
           </View>
           <View style={styles.bottom}>
             <View style={styles.row}>
-              <Pressable
+              <TouchableOpacity
                 activeOpacity={0.6}
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[0])
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[0]}
                 </Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[1])
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[1]}
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
             <View style={styles.row}>
-              <Pressable
+              <TouchableOpacity
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[2])
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[2]}
                 </Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[3])
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[3]}
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -158,37 +158,37 @@ export default class Jogar extends Component {
           </View>
           <View style={styles.bottom}>
             <View style={styles.row}>
-              <Pressable
+              <TouchableOpacity 
                 activeOpacity={0.6}
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[0])
                 }>
                 <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[0]}</Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity >
+              <TouchableOpacity 
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[1])
                 }>
                 <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[1]}</Text>
-              </Pressable>
+              </TouchableOpacity >
             </View>
             <View style={styles.row}>
-              <Pressable
+              <TouchableOpacity 
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[2])
                 }>
                 <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[2]}</Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity >
+              <TouchableOpacity 
                 style={styles.buttonOpcoes}
-                onPressOut={() =>
+                onPress={() =>
                   this.validaResposta(oJogar.respostasAleatorias[3])
                 }>
                 <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[3]}</Text>
-              </Pressable>
+              </TouchableOpacity >
             </View>
           </View>
         </View> */}

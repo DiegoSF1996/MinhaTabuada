@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
-
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 export default class Niveis extends Component {
   constructor({navigation}) {
@@ -14,7 +13,7 @@ export default class Niveis extends Component {
         <View style={styles.container}>
           <View style={styles.bottom}>
             <View style={styles.row}>
-              <Pressable
+              <TouchableOpacity
                 activeOpacity={0.6}
                 style={styles.buttonPlay}
                 onPress={() =>
@@ -23,8 +22,8 @@ export default class Niveis extends Component {
                   })
                 }>
                 <Text style={styles.text}>1</Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.buttonPlay}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
@@ -32,8 +31,8 @@ export default class Niveis extends Component {
                   })
                 }>
                 <Text style={styles.text}>2</Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.buttonPlay}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
@@ -41,8 +40,8 @@ export default class Niveis extends Component {
                   })
                 }>
                 <Text style={styles.text}>3</Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.buttonPlay}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
@@ -50,8 +49,8 @@ export default class Niveis extends Component {
                   })
                 }>
                 <Text style={styles.text}>4</Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.buttonPlay}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
@@ -59,43 +58,7 @@ export default class Niveis extends Component {
                   })
                 }>
                 <Text style={styles.text}>5</Text>
-              </Pressable>
-              <Pressable
-                style={styles.buttonPlay}
-                onPress={() =>
-                  this.navigation.navigate('Jogar', {
-                    nivel: 6,
-                  })
-                }>
-                <Text style={styles.text}>6</Text>
-              </Pressable>
-              <Pressable
-                style={styles.buttonPlay}
-                onPress={() =>
-                  this.navigation.navigate('Jogar', {
-                    nivel: 7,
-                  })
-                }>
-                <Text style={styles.text}>7</Text>
-              </Pressable>
-              <Pressable
-                style={styles.buttonPlay}
-                onPress={() =>
-                  this.navigation.navigate('Jogar', {
-                    nivel: 8,
-                  })
-                }>
-                <Text style={styles.text}>8</Text>
-              </Pressable>
-              <Pressable
-                style={styles.buttonPlay}
-                onPress={() =>
-                  this.navigation.navigate('Jogar', {
-                    nivel: 9,
-                  })
-                }>
-                <Text style={styles.text}>9</Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
