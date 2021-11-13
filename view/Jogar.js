@@ -53,7 +53,6 @@ export default class Jogar extends Component {
       this.setState({
         erros: this.state.erros + 1,
       });
-      styles.textOpcoes = {color: 'red'};
       console.log('Errow Mizeravi :(');
       alert('Errow Mizeravi :(!');
       this.updateText();
@@ -254,8 +253,9 @@ const styles = StyleSheet.create({
     marginHorizontal: '1%',
     marginBottom: 6,
     minWidth: '48%',
-    borderWidth: 2,
+    borderWidth: 5,
     backgroundColor: '#47FA6C',
+    borderColor: '#34AD4C',
   },
   textOpcoes: {
     fontSize: 24,

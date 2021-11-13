@@ -1,12 +1,20 @@
 import * as React from 'react';
-import {Button, View, Text, StyleSheet, Pressable} from 'react-native';
+import {
+  Button,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import Inicio from './view/Inicio';
 import Jogar from './view/Jogar';
 import Niveis from './view/Niveis';
 import * as idioma from './view/assets/language/pt-br.json';
-import realm , { getAllBooks } from './model/Database';
+import realm, {getAllBooks} from './model/Database';
 for (let i = 0; i < 3; i++) {
   realm.write(() => {
     const book = realm.create('Book', {
@@ -16,7 +24,6 @@ for (let i = 0; i < 3; i++) {
   });
 }
 function Teste({navigation}) {
-  
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button
@@ -34,6 +41,11 @@ const Drawer = createDrawerNavigator();
 function App() {
   return (
     <NavigationContainer>
+      <StatusBar
+        barStyle={'dark-content'}
+        translucent
+        backgroundColor="transparent"
+      />
       <Drawer.Navigator
         screenOptions={{
           headerStyle: {
