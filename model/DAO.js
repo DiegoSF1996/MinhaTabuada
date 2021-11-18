@@ -1,12 +1,13 @@
-import SQLite from 'react-native-sqlite-storage';
+import Realm from 'realm';
+import ContaResolvidaEsquema from './esquemas/ContaResolvidaEsquema';
+import NivelEsquema from './esquemas/NivelEsquema';
+import TabuadaEsquema from './esquemas/TabuadaEsquema';
+
 export default class DAO {
   constructor() {
-    this.nomeDB = 'minhaTabuada.db';
-    this.Sqlite = SQLite;
-    this.db = this.conectarBD();
-    this.Sqlite.DEBUG(true);
-  }
-  conectarBD() {
-    return this.Sqlite.openDatabase({name: this.nomeDB});
+    this.realm = new Realm({
+      schema: [NivelEsquema, TabuadaEsquema, ContaResolvidaEsquema],
+      schemaVersion: 0,
+    });
   }
 }

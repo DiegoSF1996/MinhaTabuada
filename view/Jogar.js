@@ -8,23 +8,17 @@ export default class Jogar extends Component {
     super();
     this.navigation = navigation;
     this.route = route;
-    console.log(1);
     this.state = {
-      nivel: 1,
+      nivel: route.params.nivel,
       acertos: 0,
       erros: 0,
       conta: null,
+      timer: null,
+      number: 0.0,
     };
-    //this.state.conta = this.proximaConta()['calc'];
   }
   componentDidMount() {
-    console.log(2);
-
     this.focusListener = this.props.navigation.addListener('focus', () => {
-      console.log(3);
-
-      console.log(this.props.route.params.nivel + '  -- 1');
-      console.log(this.state.nivel + '   -  2');
       if (this.props.route.params.nivel == null) {
         this.navigation.navigate('Niveis');
       }
@@ -35,30 +29,35 @@ export default class Jogar extends Component {
           nivel: this.props.route.params.nivel,
         },
         () => {
-          console.log(this.state.nivel + '   -  3');
           this.setState({conta: this.proximaConta()['calc']});
         },
       );
     });
+  }
+  cronometro() {
+    this.state.timer = setInterval(() => {
+      let newState = this.state;
+      newState.number += 0.1;
+      console.log(newState.number);
+      this.setState(newState);
+    }, 100);
   }
   validaResposta(res) {
     if (res === oJogar.respostasAleatorias[4]) {
       this.setState({
         acertos: this.state.acertos + 1,
       });
-      console.log('Acertou Mizeravi');
       alert('Acertou Mizeravi!');
-      this.updateText();
+      this.atualizaConta();
     } else {
       this.setState({
         erros: this.state.erros + 1,
       });
-      console.log('Errow Mizeravi :(');
       alert('Errow Mizeravi :(!');
-      this.updateText();
+      this.atualizaConta();
     }
   }
-  updateText = () => {
+  atualizaConta = () => {
     this.setState({
       conta: this.proximaConta()['calc'],
     });
@@ -89,6 +88,7 @@ export default class Jogar extends Component {
                 <Text style={styles.textHeader}>
                   ACERTOS: {this.state.acertos}
                 </Text>
+                <Text style={styles.textHeader}>{this.state.number}</Text>
               </View>
             </View>
           </View>
@@ -139,58 +139,6 @@ export default class Jogar extends Component {
             </View>
           </View>
         </View>
-        {/*  <View style={styles.container}>
-          <View style={styles.top}>
-            <Text>{this.state.conta}</Text>
-            <Text>Tempo: 10:00</Text>
-          </View>
-          <View style={styles.middle}>
-            <Text
-              style={{
-                fontSize: 100,
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              {this.state.conta}=?
-            </Text>
-          </View>
-          <View style={styles.bottom}>
-            <View style={styles.row}>
-              <TouchableOpacity 
-                activeOpacity={0.6}
-                style={styles.buttonOpcoes}
-                onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[0])
-                }>
-                <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[0]}</Text>
-              </TouchableOpacity >
-              <TouchableOpacity 
-                style={styles.buttonOpcoes}
-                onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[1])
-                }>
-                <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[1]}</Text>
-              </TouchableOpacity >
-            </View>
-            <View style={styles.row}>
-              <TouchableOpacity 
-                style={styles.buttonOpcoes}
-                onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[2])
-                }>
-                <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[2]}</Text>
-              </TouchableOpacity >
-              <TouchableOpacity 
-                style={styles.buttonOpcoes}
-                onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[3])
-                }>
-                <Text style={styles.textOpcoes}>{oJogar.respostasAleatorias[3]}</Text>
-              </TouchableOpacity >
-            </View>
-          </View>
-        </View> */}
       </View>
     );
   }

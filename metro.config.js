@@ -7,7 +7,7 @@
 
 module.exports = {
   plugins: [
-   /*  'react-native-reanimated/plugin', */
+    'react-native-reanimated/plugin',
 ],
   transformer: {
     getTransformOptions: async () => ({

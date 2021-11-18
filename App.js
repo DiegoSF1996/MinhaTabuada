@@ -13,16 +13,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import Inicio from './view/Inicio';
 import Jogar from './view/Jogar';
 import Niveis from './view/Niveis';
+import Nivel from './model/Nivel';
+import Tabuada from './model/Tabuada';
+
 import * as idioma from './view/assets/language/pt-br.json';
-import realm, {getAllBooks} from './model/Database';
-for (let i = 0; i < 3; i++) {
-  realm.write(() => {
-    const book = realm.create('Book', {
-      title: 'Barry Butter' + i,
-      pages: 400,
-    });
-  });
-}
+import AppController from './controller/AppController';
+
 function Teste({navigation}) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -39,6 +35,16 @@ function Teste({navigation}) {
 const Drawer = createDrawerNavigator();
 
 function App() {
+  //addBook("Chronicles of JavaScript", Math.floor(Math.random() * 500), null, getAuthorById(1)[0])
+  //let teste = addAuthor('Diego','Figueiredo');
+  //let n = addNivel('Nível 1')
+  // Nivel.update(1, 'teste');
+  let tabuada = Tabuada.getAllTabuada();
+  let livros = Nivel.getAllNivel();
+  /* Nivel.deleteAllNiveis();
+  Tabuada.deleteAllTabuadas() */
+  console.log(tabuada[1000]);
+
   return (
     <NavigationContainer>
       <StatusBar

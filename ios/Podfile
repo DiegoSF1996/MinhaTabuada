@@ -14,6 +14,8 @@ target 'MinhaTabuada' do
 
   pod 'react-native-sqlite-storage', :path => '../node_modules/react-native-sqlite-storage'
 
+  pod 'RealmJS', :path => '../node_modules/realm'
+
   target 'MinhaTabuadaTests' do
     inherit! :complete
     # Pods for testing
