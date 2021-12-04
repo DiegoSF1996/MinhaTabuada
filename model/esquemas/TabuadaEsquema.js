@@ -1,4 +1,3 @@
-import Realm from 'realm';
 
 export default class TabuadaSchema extends Realm.Object {}
 TabuadaSchema.schema = {
@@ -6,10 +5,12 @@ TabuadaSchema.schema = {
   primaryKey: 'tab_codigo',
   properties: {
     tab_codigo: 'int',
-    tab_x: 'string',
-    tab_y: 'string',
+    tab_x: 'int',
+    tab_y: 'int',
     tab_operacao: 'string',
     tab_resposta: 'int',
+    tab_acertos: 'int?',
+    tab_erros: 'int?',
     Nivel: 'Nivel',
   },
 };

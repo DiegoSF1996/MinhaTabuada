@@ -7,6 +7,9 @@ class Nivel extends DAO {
   getAllNivel() {
     return this.realm.objects(this.nome_tabela);
   }
+  getSumNivel() {
+    return this.realm.objects(this.nome_tabela).max('niv_codigo');
+  }
   addNivel(_niv_descricao) {
     this.realm.write(() => {
       const Nivel = this.realm.create(this.nome_tabela, {

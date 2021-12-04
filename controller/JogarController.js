@@ -1,11 +1,23 @@
-/* let oCliente = require('../model/Cliente'); */
+import Nivel from '../model/Nivel';
+import Tabuada from '../model/Tabuada';
+
 class JogarController {
   constructor() {
     this.tabuada = [];
     this.respostasAleatorias = [];
   }
-  
-  gerarTabuadaCompleta() {
+  gerarTabuadaPorNivel(_nivel) {
+    return (this.tabuada = Tabuada.getTabuadaByNivel(_nivel));
+  }
+  cabecalho(_nivel) {
+    let totAcertoErroPorNivel = Tabuada.getTotAcertosErrosByNivel(_nivel);
+    return totAcertoErroPorNivel;
+  }
+  addAcertoErro(_tab_codigo, _erroAcerto) {
+    Tabuada.addAcertoErro(_tab_codigo, _erroAcerto);
+  }
+
+  /*   gerarTabuadaCompleta() {
     for (let x = 2; x <= 60; x++) {
       this.tabuada[x] = [];
       for (let i = 2; i <= 60; i++) {
@@ -16,30 +28,25 @@ class JogarController {
         this.tabuada[x][i]['/'] = {calc: x + ' ÷ ' + i, res: x / i};
       }
     }
-  }
+  } */
   nivelTabuadaAleatoria(nivel) {
-    let tabuada = false;
-    switch (nivel) {
-      case 1:
-        tabuada = this.tabuadaAleatoria(2, 10);
-        break;
-      case 2:
-        tabuada = this.tabuadaAleatoria(10, 20);
-        break;
-      case 3:
-        tabuada = this.tabuadaAleatoria(20, 30);
-        break;
-      case 4:
-        tabuada = this.tabuadaAleatoria(30, 40);
-        break;
-      case 5:
-        tabuada = this.tabuadaAleatoria(40, 50);
-        break;
-    }
-    return tabuada;
+    this.gerarTabuadaPorNivel(nivel);
+
+    let operacaoEscolhida = parseInt(
+      Math.random() * (this.tabuada.length - 1) + 0,
+    );
+    this.contaAtual = this.tabuada[operacaoEscolhida];
+    this.contaAtual.calc =
+      this.contaAtual.tab_x +
+      this.contaAtual.tab_operacao +
+      this.contaAtual.tab_y;
+
+    //this.contaAtual = {'calc': this.tabuada[x][y][tipo.toString()]['calc'], 'res': this.tabuada[x][y]['x']['res']}
+    this.gerarRespostasAleatoria();
+    return this.contaAtual;
   }
-  tabuadaAleatoria(min, max) {
-    this.gerarTabuadaCompleta();
+  /* tabuadaAleatoria(min, max) {
+    this.gerarTabuadaPorNivel();
     let x = parseInt(Math.random() * (max - min) + min);
     let y = parseInt(Math.random() * (max - min) + min);
     let tipoInt = parseInt(Math.random() * (4 - 0) + 0);
@@ -67,10 +74,10 @@ class JogarController {
     //this.contaAtual = {'calc': this.tabuada[x][y][tipo.toString()]['calc'], 'res': this.tabuada[x][y]['x']['res']}
     this.gerarRespostasAleatoria();
     return this.tabuada[x][y][operacoes[tipoInt]];
-  }
+  } */
 
   gerarRespostasAleatoria() {
-    let resposta = this.contaAtual['res'];
+    let resposta = this.contaAtual.tab_resposta;
 
     this.respostasAleatorias = [
       resposta + 2,
@@ -84,16 +91,12 @@ class JogarController {
       this.respostasAleatorias[parseInt(Math.random() * (3 - 0) + 0)] =
         resposta - 2;
     }
-    this.respostasAleatorias[parseInt(Math.random() * (3 - 0) + 0)] = resposta;
-    this.respostasAleatorias[4] = resposta; //resposta correta para comparar
-  }
-
-  cronometro() {
-
-    
-  }
-  teste() {
-    return 'teste 123';
+    let indiceRespostaCerta = parseInt(Math.random() * (3 - 0) + 0);
+    this.respostasAleatorias[indiceRespostaCerta] = resposta;
+    this.respostasAleatorias[4] = {
+      resposta,
+      indiceRespostaCerta,
+    }; //resposta correta para comparar
   }
 }
 

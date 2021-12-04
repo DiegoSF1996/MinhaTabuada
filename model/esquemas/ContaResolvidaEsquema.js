@@ -1,6 +1,3 @@
-
-import Realm from 'realm';
-
 export default class ContaResolvidaSchema extends Realm.Object {}
 ContaResolvidaSchema.schema = {
   name: 'ContaResolvida',

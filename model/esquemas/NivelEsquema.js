@@ -1,4 +1,3 @@
-import Realm from 'realm';
 
 export default class NivelSchema extends Realm.Object {}
 NivelSchema.schema = {

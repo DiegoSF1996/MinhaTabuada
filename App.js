@@ -1,20 +1,12 @@
 import * as React from 'react';
-import {
-  Button,
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
+import {Button, View, Text, StyleSheet, StatusBar} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import Inicio from './view/Inicio';
 import Jogar from './view/Jogar';
 import Niveis from './view/Niveis';
-import Nivel from './model/Nivel';
-import Tabuada from './model/Tabuada';
+/* import Nivel from './model/Nivel';
+import Tabuada from './model/Tabuada'; */
 
 import * as idioma from './view/assets/language/pt-br.json';
 import AppController from './controller/AppController';
@@ -27,7 +19,7 @@ function Teste({navigation}) {
         onPress={() => navigation.goBack()}
         title="Go back home"
       />
-      <Text>{JSON.stringify(getAllBooks())}</Text>
+      <Text>sss</Text>
     </View>
   );
 }
@@ -39,12 +31,13 @@ function App() {
   //let teste = addAuthor('Diego','Figueiredo');
   //let n = addNivel('Nível 1')
   // Nivel.update(1, 'teste');
-  let tabuada = Tabuada.getAllTabuada();
-  let livros = Nivel.getAllNivel();
+  /*   let tabuada = Tabuada.getAllTabuada();
+  let livros = Nivel.getAllNivel(); */
+
   /* Nivel.deleteAllNiveis();
   Tabuada.deleteAllTabuadas() */
-  console.log(tabuada[1000]);
-
+  /*   console.log(Nivel.getSumNivel()); */
+  //AppController.reset();
   return (
     <NavigationContainer>
       <StatusBar
@@ -73,7 +66,7 @@ function App() {
           }}
           component={Inicio}
         />
-        <Drawer.Screen name="Teste" component={Teste} />
+        {/* <Drawer.Screen name="Teste" component={Teste} /> */}
         <Drawer.Screen name="Jogar" component={Jogar} />
         <Drawer.Screen
           options={{

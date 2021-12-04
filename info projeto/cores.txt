@@ -3,3 +3,7 @@ FABB70
 9457FA
 47FA6C
 34AD4C
+
+botões de opções
+fa7970
+659c6c

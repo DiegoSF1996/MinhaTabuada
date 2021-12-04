@@ -4,32 +4,36 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 let oJogar = require('../controller/JogarController.js');
 
 export default class Jogar extends Component {
-  constructor({navigation, route}) {
+  constructor(/* {navigation, route} */) {
     super();
-    this.navigation = navigation;
-    this.route = route;
     this.state = {
-      nivel: route.params.nivel,
+      nivel: 0,
       acertos: 0,
       erros: 0,
-      conta: null,
+      conta: {},
       timer: null,
       number: 0.0,
+      textoMiddle: {},
+      opcaoCerta: [],
+      opcaoEscolhida: [],
     };
   }
+
   componentDidMount() {
     this.focusListener = this.props.navigation.addListener('focus', () => {
       if (this.props.route.params.nivel == null) {
-        this.navigation.navigate('Niveis');
+        //this.props.navigation.navigate('Niveis');
       }
       this.setState(
         {
           acertos: 0,
           erros: 0,
           nivel: this.props.route.params.nivel,
+          conta: this.proximaConta(),
         },
         () => {
-          this.setState({conta: this.proximaConta()['calc']});
+          this.atualizaCabecalho(this.props.route.params.nivel);
+          this.atualizaExibicaoConta();
         },
       );
     });
@@ -38,38 +42,75 @@ export default class Jogar extends Component {
     this.state.timer = setInterval(() => {
       let newState = this.state;
       newState.number += 0.1;
-      console.log(newState.number);
       this.setState(newState);
     }, 100);
   }
-  validaResposta(res) {
-    if (res === oJogar.respostasAleatorias[4]) {
+  atualizaCabecalho(_nivel) {
+    //this.state.nivel;
+    let oAcertosErros = oJogar.cabecalho(_nivel);
+    this.setState({
+      erros: oAcertosErros.totErros,
+      acertos: oAcertosErros.totAcertos,
+    });
+  }
+  atualizaExibicaoConta() {
+
+    if (this.state.conta.tab_erros > this.state.conta.tab_acertos) {
       this.setState({
-        acertos: this.state.acertos + 1,
+        textoMiddle: {textShadowColor: '#c97979', textShadowRadius: 100},
       });
-      alert('Acertou Mizeravi!');
-      this.atualizaConta();
     } else {
       this.setState({
-        erros: this.state.erros + 1,
+        textoMiddle: {textShadowColor: 'green', textShadowRadius: 100},
       });
-      alert('Errow Mizeravi :(!');
-      this.atualizaConta();
     }
+  }
+  validaResposta(res, indiceEscolhido) {
+    let indiceRespostaCerta = oJogar.respostasAleatorias[4].indiceRespostaCerta;
+    if (res === oJogar.respostasAleatorias[4].resposta) {
+      oJogar.addAcertoErro(this.state.conta.tab_codigo, 'acerto');
+
+      this.setState({
+        opcaoCerta: {[indiceRespostaCerta]: {backgroundColor: '#659c6c'}},
+      });
+
+      //this.atualizaConta();
+    } else {
+      oJogar.addAcertoErro(this.state.conta.tab_codigo, 'erro');
+
+      this.setState({
+        opcaoCerta: {[indiceRespostaCerta]: {backgroundColor: '#659c6c'}},
+      });
+      this.setState({
+        opcaoEscolhida: {[indiceEscolhido]: {backgroundColor: '#fa7970'}},
+      });
+      //this.atualizaConta();
+    }
+    setTimeout(() => {
+      this.setState({
+        opcaoCerta: {},
+      });
+      this.setState({
+        opcaoEscolhida: {},
+      });
+      this.atualizaCabecalho(this.props.route.params.nivel);
+      this.atualizaConta();
+      this.atualizaExibicaoConta();
+    }, 50);
   }
   atualizaConta = () => {
     this.setState({
-      conta: this.proximaConta()['calc'],
+      conta: this.proximaConta(),
     });
-    console.log(this.state.conta);
   };
   proximaConta() {
     let conta = false;
     while (conta == false) {
-      conta = oJogar.nivelTabuadaAleatoria(this.state.nivel);
+      conta = oJogar.nivelTabuadaAleatoria(this.props.route.params.nivel);
     }
     return conta;
   }
+
   render() {
     return (
       <View
@@ -88,29 +129,39 @@ export default class Jogar extends Component {
                 <Text style={styles.textHeader}>
                   ACERTOS: {this.state.acertos}
                 </Text>
-                <Text style={styles.textHeader}>{this.state.number}</Text>
+                {/* <Text style={styles.textHeader}>{this.state.number}</Text> */}
               </View>
             </View>
           </View>
-          <View style={(styles.middle, styles.panelMiddle)}>
-            <Text style={styles.textMiddle}>{this.state.conta} = ?</Text>
+          <View style={[/* styles.middle, */ styles.panelMiddle]}>
+            <Text style={[styles.textMiddle, this.state.textoMiddle]}>
+              {this.state.conta.calc} = ?
+            </Text>
           </View>
           <View style={styles.bottom}>
             <View style={styles.row}>
               <TouchableOpacity
                 activeOpacity={0.6}
-                style={styles.buttonOpcoes}
+                style={[
+                  styles.buttonOpcoes,
+                  this.state.opcaoCerta[0],
+                  this.state.opcaoEscolhida[0],
+                ]}
                 onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[0])
+                  this.validaResposta(oJogar.respostasAleatorias[0], 0)
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[0]}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.buttonOpcoes}
+                style={[
+                  styles.buttonOpcoes,
+                  this.state.opcaoCerta[1],
+                  this.state.opcaoEscolhida[1],
+                ]}
                 onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[1])
+                  this.validaResposta(oJogar.respostasAleatorias[1], 1)
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[1]}
@@ -119,18 +170,26 @@ export default class Jogar extends Component {
             </View>
             <View style={styles.row}>
               <TouchableOpacity
-                style={styles.buttonOpcoes}
+                style={[
+                  styles.buttonOpcoes,
+                  this.state.opcaoCerta[2],
+                  this.state.opcaoEscolhida[2],
+                ]}
                 onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[2])
+                  this.validaResposta(oJogar.respostasAleatorias[2], 2)
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[2]}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.buttonOpcoes}
+                style={[
+                  styles.buttonOpcoes,
+                  this.state.opcaoCerta[3],
+                  this.state.opcaoEscolhida[3],
+                ]}
                 onPress={() =>
-                  this.validaResposta(oJogar.respostasAleatorias[3])
+                  this.validaResposta(oJogar.respostasAleatorias[3], 3)
                 }>
                 <Text style={styles.textOpcoes}>
                   {oJogar.respostasAleatorias[3]}
