@@ -1,5 +1,27 @@
+Segunda etapa:
+
+Otimizar codigo
+melhorar design
+
+Terceira Etapa:
+
+ajustar menu de niveis, fazer com que só possa avançar quando pelo menos já tiver jogado todas as contas do nivel anterior
+Remover travamento
+
+
+Quarta etapa
+exibir todas as tabuadas por nivel e o status (acertos e erros)
+
+quinta etapa
+Relatorio de contas mais erradas e acertadas e tipos de operações que tem maior dificuldade
+
+
+
 Contador de tempo
 Contador de quantos acertou e errou, e quais os indices
+
+
+
 
 Ao clicar em jogar: 
 	Vai pro menu de niveis

@@ -31,7 +31,9 @@ class JogarController {
   } */
   nivelTabuadaAleatoria(nivel) {
     this.gerarTabuadaPorNivel(nivel);
-
+    if (this.tabuada.length == 0) {
+      return false;
+    }
     let operacaoEscolhida = parseInt(
       Math.random() * (this.tabuada.length - 1) + 0,
     );

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 
 let oJogar = require('../controller/JogarController.js');
 
@@ -54,7 +54,6 @@ export default class Jogar extends Component {
     });
   }
   atualizaExibicaoConta() {
-
     if (this.state.conta.tab_erros > this.state.conta.tab_acertos) {
       this.setState({
         textoMiddle: {textShadowColor: '#c97979', textShadowRadius: 100},
@@ -96,7 +95,7 @@ export default class Jogar extends Component {
       this.atualizaCabecalho(this.props.route.params.nivel);
       this.atualizaConta();
       this.atualizaExibicaoConta();
-    }, 50);
+    }, 90);
   }
   atualizaConta = () => {
     this.setState({
@@ -104,9 +103,10 @@ export default class Jogar extends Component {
     });
   };
   proximaConta() {
-    let conta = false;
-    while (conta == false) {
-      conta = oJogar.nivelTabuadaAleatoria(this.props.route.params.nivel);
+    let conta = oJogar.nivelTabuadaAleatoria(this.props.route.params.nivel);
+    if (conta == false) {
+      alert('Nível indisponível, tente o proximo!');
+      this.props.navigation.navigate('Niveis');
     }
     return conta;
   }

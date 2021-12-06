@@ -15,49 +15,49 @@ export default class Niveis extends Component {
             <View style={styles.row}>
               <TouchableOpacity
                 activeOpacity={0.6}
-                style={styles.buttonPlay}
+                style={styles.buttonNiveis}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
                     nivel: 1,
                   })
                 }>
-                <Text style={styles.text}>1</Text>
+                <Text style={styles.textNiveis}>1</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.buttonPlay}
+                style={styles.buttonNiveis}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
                     nivel: 2,
                   })
                 }>
-                <Text style={styles.text}>2</Text>
+                <Text style={styles.textNiveis}>2</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.buttonPlay}
+                style={styles.buttonNiveis}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
                     nivel: 3,
                   })
                 }>
-                <Text style={styles.text}>3</Text>
+                <Text style={styles.textNiveis}>3</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.buttonPlay}
+                style={styles.buttonNiveis}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
                     nivel: 4,
                   })
                 }>
-                <Text style={styles.text}>4</Text>
+                <Text style={styles.textNiveis}>4</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.buttonPlay}
+                style={styles.buttonNiveis}
                 onPress={() =>
                   this.navigation.navigate('Jogar', {
                     nivel: 5,
                   })
                 }>
-                <Text style={styles.text}>5</Text>
+                <Text style={styles.textNiveis}>5</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  buttonPlay: {
+  buttonNiveis: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: '7%',
@@ -85,6 +85,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#47FA6C',
     margin: 7,
+  },
+  textNiveis:{
+    
+    color: 'black',
+    fontWeight: 'bold',
   },
   container: {
     flex: 1,
